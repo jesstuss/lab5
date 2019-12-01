@@ -23,6 +23,28 @@ app.get("/search", async function(req, res){
     res.render("results", {"imageURLs":imageURLs});
 });//search
 
+app.get("/api/updateFavorites", function(req, res){
+    var conn = mysql.createConnection({
+        host: "cst336db.space",
+        user: "cst336_dbUser032",
+        password: "gmtwgm",
+        database: "cst336_db032"
+    })
+    
+    var sql = "INSERT INTO favorites (imageURL, keyword) VALUES (?, ?)";
+    var sqlParams =[req.query.imageURL, req.query.keyword];
+    
+    conn.connect( function(err){
+        if (err) throw err;
+        
+        conn.query(sql, sqlParams, function(err, result){
+            if (err) throw err;
+        });//query
+    });//connect
+    
+    res.send("it works!");
+});//updateFavorites
+
 //server listener
 app.listen("8080", "127.0.0.1", function(){
     console.log("Express Server is running...")
