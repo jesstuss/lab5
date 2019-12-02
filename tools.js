@@ -1,4 +1,5 @@
 const request = require('request');
+const mysql = require("mysql");
 
 module.exports = {
     /**
@@ -48,5 +49,19 @@ module.exports = {
                 }
             });//request
         });//promise
-    }//function
+    },//function
+    
+    /**
+     * Creates database connection
+     * @return db connection
+     */
+    createConnection: function(){
+        var conn = mysql.createConnection({
+            host: "cst336db.space",
+            user: "cst336_dbUser032",
+            password: "gmtwgm",
+            database: "cst336_db032"
+        });
+        return conn;
+    }
 }
