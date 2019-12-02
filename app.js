@@ -37,7 +37,6 @@ app.get("/api/updateFavorites", function(req, res){
         sqlParams = [req.query.imageURL]
     }
     
-    
     conn.connect( function(err){
         if (err) throw err;
         
